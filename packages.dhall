@@ -1,8 +1,78 @@
 let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.13.8/packages.dhall sha256:0e95ec11604dc8afc1b129c4d405dcc17290ce56d7d0665a0ff15617e32bbf03
+  https://github.com/purescript/package-sets/releases/download/psc-0.14.4-20210905/packages.dhall sha256:140f3630801f2b02d5f3a405d4872e0af317e4ef187016a6b00f97d59d6275c6
 
-let overrides = {=}
+let overrides =
+      { trout =
+        { dependencies =
+          [ "argonaut"
+          , "media-types"
+          , "prelude"
+          , "smolder"
+          , "spec"
+          , "spec-discovery"
+          , "uri"
+          , "aff"
+          , "argonaut-core"
+          , "arrays"
+          , "bifunctors"
+          , "effect"
+          , "either"
+          , "free"
+          , "integers"
+          , "lists"
+          , "maybe"
+          , "newtype"
+          , "strings"
+          , "these"
+          , "tuples"
+          ]
+        , repo = "https://github.com/kejace/purescript-trout.git"
+        , version = "v14"
+        }
+      , hyper =
+        { dependencies =
+          [ "aff"
+          , "avar"
+          , "argonaut"
+          , "arrays"
+          , "console"
+          , "control"
+          , "effect"
+          , "foldable-traversable"
+          , "http-methods"
+          , "indexed-monad"
+          , "media-types"
+          , "node-buffer"
+          , "node-fs-aff"
+          , "node-http"
+          , "ordered-collections"
+          , "psci-support"
+          , "random"
+          , "smolder"
+          , "spec"
+          , "spec-discovery"
+          , "strings"
+          , "transformers"
+          , "record-extra"
+          ]
+        , repo = "https://github.com/kejace/hyper.git"
+        , version = "v14"
+        }
+      , js-uri =
+        { dependencies = [ "functions", "maybe" ]
+        , repo = "https://github.com/srghma/purescript-js-uri.git"
+        , version = "main"
+        }
+      , node-http =
+      upstream.node-http // { repo = "https://github.com/srghma/purescript-node-http.git", version = "master" }
+      }
 
-let additions = {=}
+let additions =
+      { smolder =
+        { dependencies = [ "prelude", "js-uri" ]
+        , repo = "https://github.com/nsaunders/purescript-smolder.git"
+        , version = "ps-0.14"
+        }
+      }
 
 in  upstream // overrides // additions
